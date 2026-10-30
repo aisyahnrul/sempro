@@ -39,7 +39,8 @@ class ReviewController extends Controller
 
         return view('dosen.review.show', compact(
             'proposal',
-            'versiProposal'
+            'versiProposal',
+            'dosen'
         ));
     }
     public function file($id_ver)

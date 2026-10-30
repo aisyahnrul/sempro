@@ -38,12 +38,27 @@
 
             @if ($versi->reviews->count())
                 <div style="margin-top:14px;">
-                    <div class="small" style="font-weight:700;color:var(--primary-darker);margin-bottom:7px;">Riwayat Review</div>
+                    <div class="small" style="font-weight:700;color:var(--primary-darker);margin-bottom:7px;">Riwayat Review dan Revisi Pembimbing</div>
+                    <p class="muted small" style="margin:0 0 8px;">Riwayat review dari pembimbing sebelumnya tetap ditampilkan sebagai referensi pembimbing saat ini.</p>
                     @foreach ($versi->reviews as $review)
                         <div class="review-note">
-                            <div class="who">{{ $review->dosen->nama ?? 'Dosen Pembimbing' }}</div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+                                <div class="who">
+                                    {{ $review->dosen->nama ?? 'Dosen Pembimbing' }}
+                                </div>
+
+                                @if ($review->id_dosen == $dosen->id_dosen)
+                                    <span class="badge status-success">Pembimbing Saat Ini</span>
+                                @else
+                                    <span class="badge status-purple">Pembimbing Sebelumnya</span>
+                                @endif
+                            </div>
+
                             <div class="text">{{ $review->komentar }}</div>
-                            <div class="muted" style="margin-top:6px;">{{ $review->created_at?->format('d M Y, H:i') }}</div>
+
+                            <div class="muted" style="margin-top:6px;">
+                                {{ $review->created_at?->format('d M Y, H:i') }}
+                            </div>
                         </div>
                     @endforeach
                 </div>

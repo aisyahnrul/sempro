@@ -155,7 +155,7 @@ class BimbinganController extends Controller
         ->get();
 
     return view(
-        'admin.bimbingan.proses-ganti',
+        'admin.bimbingan.proses_ganti',
         compact('pengajuan', 'dosen')
     );
     }
